@@ -38,14 +38,19 @@ class BinaryTreeNode:
         self.right_child = None
 
 class BinaryTree:
-    def __init__(self,original_array): # original_arrayは数値が格納されたサイズ1以上のシーケンス
+    def __init__(self,original_array): # original_arrayは数値が格納されたシーケンス
         original_array=list(original_array)
+        self.root=0
+        self.garbage=set()
+        if not original_array:
+            self.tree_array=[]
+            self.length=0
+            self.array_length=0
+            return
         shuffle(original_array)
         self.tree_array=[BinaryTreeNode(original_array[0],None,None,None)]
         self.length=1 # 見かけの長さ（木のノード数）
         self.array_length=1 # tree_arrayの実際の長さ
-        self.root=0
-        self.garbage=set()
         for i in range(1,len(original_array)):
             new_value=original_array[i]
             index=self.root
